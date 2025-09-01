@@ -1,0 +1,18 @@
+# Customer Directory Protection
+# Additional security for customer pages
+
+# Deny access to all files by default
+Order Deny,Allow
+Deny from all
+
+# Allow access to PHP files (they have their own authentication)
+<Files "*.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Security headers for customer area
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options DENY
+    Header always set X-Content-Type-Options nosniff
+</IfModule>

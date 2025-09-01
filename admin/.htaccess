@@ -1,0 +1,19 @@
+# Admin Directory Protection
+# Additional security for admin pages
+
+# Deny access to all files by default
+Order Deny,Allow
+Deny from all
+
+# Allow access to PHP files (they have their own authentication)
+<Files "*.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Additional security headers for admin area
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options DENY
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
