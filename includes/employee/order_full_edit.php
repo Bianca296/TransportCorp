@@ -241,6 +241,11 @@ function resetForm() {
 function hideEditForm() {
     if (confirm('Are you sure you want to cancel editing? Any unsaved changes will be lost.')) {
         document.getElementById('edit-section').style.display = 'none';
+        // Scroll back to top of order details
+        document.querySelector('.order-overview').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
     }
 }
 

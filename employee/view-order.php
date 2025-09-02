@@ -254,10 +254,25 @@ include '../includes/header.php';
                 </div>
             </div>
 
-            <!-- Quick Actions -->
+            <!-- Quick Actions (only show if actions are available) -->
+            <?php if (in_array($order['status'], ['pending', 'confirmed', 'processing'])): ?>
             <div class="quick-actions-section">
                 <h3>⚡ Quick Actions</h3>
                 <div class="quick-actions">
+                    <!-- Invoice Actions (only for non-cancelled orders) -->
+                    <?php if ($order['status'] !== 'cancelled'): ?>
+                        <a href="../api/invoice.php?order_id=<?php echo $order['id']; ?>&action=download" 
+                           class="action-btn invoice" 
+                           target="_blank">
+                            📄 Download Invoice
+                        </a>
+                        <a href="../api/invoice.php?order_id=<?php echo $order['id']; ?>&action=preview" 
+                           class="action-btn invoice-preview" 
+                           target="_blank">
+                            👁️ Preview Invoice
+                        </a>
+                    <?php endif; ?>
+                    
                     <?php if ($order['status'] === 'pending'): ?>
                         <button onclick="quickConfirmOrder(<?php echo $order['id']; ?>, '<?php echo htmlspecialchars($order['order_number']); ?>')" 
                                 class="action-btn confirm">
@@ -285,10 +300,11 @@ include '../includes/header.php';
                     <?php endif; ?>
                 </div>
             </div>
+            <?php endif; ?>
 
             <!-- Edit Section (only for eligible orders) -->
             <?php if (in_array($order['status'], ['pending', 'confirmed'])): ?>
-                <div id="edit-section" class="edit-section">
+                <div id="edit-section" class="edit-section" style="display: none;">
                     <?php include '../includes/employee/order_full_edit.php'; ?>
                 </div>
             <?php endif; ?>
@@ -343,7 +359,11 @@ function confirmDelete(orderId, orderNumber) {
 }
 
 function scrollToEdit() {
-    document.getElementById('edit-section').scrollIntoView({ 
+    const editSection = document.getElementById('edit-section');
+    // Show the edit section
+    editSection.style.display = 'block';
+    // Scroll to it
+    editSection.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
     });

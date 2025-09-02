@@ -248,6 +248,20 @@ include '../includes/header.php';
             <!-- Action Buttons -->
             <div class="order-actions">
                 <div class="action-buttons">
+                    <!-- Invoice Actions (only for non-cancelled orders) -->
+                    <?php if ($order['status'] !== 'cancelled'): ?>
+                        <a href="../api/invoice.php?order_id=<?php echo $order['id']; ?>&action=download" 
+                           class="btn btn-primary" 
+                           target="_blank">
+                            📄 Download Invoice
+                        </a>
+                        <a href="../api/invoice.php?order_id=<?php echo $order['id']; ?>&action=preview" 
+                           class="btn btn-outline" 
+                           target="_blank">
+                            👁️ Preview Invoice
+                        </a>
+                    <?php endif; ?>
+                    
                     <a href="dashboard.php" class="btn btn-secondary">← Back to Dashboard</a>
                     
                     <?php if ($order['status'] === 'pending' && ($user['role'] === 'customer' && $order['user_id'] == $user['id']) || $user['role'] !== 'customer'): ?>

@@ -236,6 +236,14 @@ include '../includes/header.php';
                             <a href="view-order.php?id=<?php echo $order['id']; ?>" class="btn btn-primary btn-sm">
                                 View Details
                             </a>
+                            <?php if ($order['status'] !== 'cancelled'): ?>
+                                <a href="../api/invoice.php?order_id=<?php echo $order['id']; ?>&action=download" 
+                                   class="btn btn-success btn-sm" 
+                                   target="_blank"
+                                   title="Download Invoice">
+                                    📄 Invoice
+                                </a>
+                            <?php endif; ?>
                             <?php if ($order['status'] === 'pending'): ?>
                                 <button onclick="cancelOrder(<?php echo $order['id']; ?>, '<?php echo htmlspecialchars($order['order_number']); ?>')" 
                                         class="btn btn-danger btn-sm">

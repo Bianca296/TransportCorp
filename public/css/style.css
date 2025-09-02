@@ -618,11 +618,13 @@ body {
     background: transparent;
     border: 2px solid #3498db;
     color: #3498db;
+    font-weight: 600;
 }
 
 .btn-outline:hover {
     background: #3498db;
     color: white;
+    border-color: #3498db;
 }
 
 /* Role Distribution */
@@ -2050,13 +2052,15 @@ body {
 
 .btn-outline {
     background: transparent;
-    border: 1px solid #6c757d;
-    color: #6c757d;
+    border: 2px solid #3498db;
+    color: #3498db;
+    font-weight: 600;
 }
 
 .btn-outline:hover {
-    background: #6c757d;
+    background: #3498db;
     color: white;
+    border-color: #3498db;
 }
 
 /* Pagination */
@@ -3797,12 +3801,42 @@ body {
 }
 
 .action-btn.edit {
-    background: var(--primary);
-    color: white;
+    background: #3498db !important;
+    color: white !important;
+    border: 2px solid #3498db !important;
 }
 
 .action-btn.edit:hover {
-    background: #2980b9;
+    background: #2980b9 !important;
+    border-color: #2980b9 !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* Invoice action buttons */
+.action-btn.invoice {
+    background: #27ae60 !important;
+    color: white !important;
+    border: 2px solid #27ae60 !important;
+}
+
+.action-btn.invoice:hover {
+    background: #229954 !important;
+    border-color: #229954 !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.action-btn.invoice-preview {
+    background: #8e44ad !important;
+    color: white !important;
+    border: 2px solid #8e44ad !important;
+}
+
+.action-btn.invoice-preview:hover {
+    background: #7d3c98 !important;
+    border-color: #7d3c98 !important;
+    color: white !important;
     transform: translateY(-2px);
 }
 

@@ -186,12 +186,12 @@ function logContactSubmission($data) {
         
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            $data['name'],
-            $data['email'],
-            $data['phone'],
-            $data['subject'],
-            $data['service_type'],
-            $data['message'],
+            $data['name'] ?? '',
+            $data['email'] ?? '',
+            $data['phone'] ?? null,
+            $data['subject'] ?? '',
+            $data['service_type'] ?? 'General Inquiry',
+            $data['message'] ?? '',
             $_SERVER['REMOTE_ADDR'] ?? null,
             $_SERVER['HTTP_USER_AGENT'] ?? null
         ]);
